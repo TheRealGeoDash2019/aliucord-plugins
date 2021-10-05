@@ -7,7 +7,7 @@ import com.aliucord.annotations.AliucordPlugin;
 import com.aliucord.api.CommandsAPI;
 import com.aliucord.entities.MessageEmbedBuilder;
 import com.aliucord.entities.Plugin;
-import com.aliucord.plugins.catapi.ApiResponse;
+import com.aliucord.plugins.geomusic.ApiResponse;
 
 import java.io.IOException;
 import java.util.Collections;
