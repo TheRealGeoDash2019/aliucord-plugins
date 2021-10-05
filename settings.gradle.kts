@@ -1,4 +1,4 @@
-// include(":MyFirstPlugin")
+include(":GeoMusicSlashCommands")
 
 //include(":CatApi")
 //project(":CatApi").projectDir = File("./ExamplePlugins/CatApi")
