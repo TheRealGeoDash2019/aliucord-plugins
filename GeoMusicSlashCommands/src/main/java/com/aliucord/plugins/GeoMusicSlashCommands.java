@@ -15,7 +15,7 @@ import java.util.Collections;
 // This class is never used so your IDE will likely complain. Let's make it shut up!
 @SuppressWarnings("unused")
 @AliucordPlugin
-public class CatApi extends Plugin {
+public class GeoMusicSlashCommands extends Plugin {
     @Override
     // Called when your plugin is started. This is the place to register command, add patches, etc
     public void start(Context context) {
