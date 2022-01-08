@@ -3,6 +3,7 @@ package com.aliucord.plugins;
 import android.content.Context;
 
 import com.aliucord.Http;
+import com.aliucord.Utils;
 import com.aliucord.annotations.AliucordPlugin;
 import com.aliucord.api.CommandsAPI;
 import com.aliucord.entities.MessageEmbedBuilder;
@@ -13,6 +14,7 @@ import com.discord.api.commands.ApplicationCommandType;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Arrays;
 
 // This class is never used so your IDE will likely complain. Let's make it shut up!
 @SuppressWarnings("unused")
