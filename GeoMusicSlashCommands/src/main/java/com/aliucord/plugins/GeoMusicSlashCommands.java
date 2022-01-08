@@ -27,7 +27,8 @@ public class GeoMusicSlashCommands extends Plugin {
                     try {
                         // Fetch the api and deserialize the resulting Json string into the ApiResponse class
                         ApiResponse res = Http.simpleJsonGet("https://geomusic.tech/api/v2/bot/stats", ApiResponse.class);
-
+                        String uptime = "Bot Uptime: ";
+                        String result = uptime + res
                         // Build a nice embed
                         var eb = new MessageEmbedBuilder()
                                 .setRandomColor()
@@ -35,7 +36,7 @@ public class GeoMusicSlashCommands extends Plugin {
                                 // You should specify height and width but we don't have it in this case, so we have to use -1 (the default)
                                 // Thus the image will end up square regardless of its dimensions. In a real plugin you would probably want to
                                 // load the image and get its dimensions
-                                .setDescription("Bot Uptime: " + res.uptime)
+                                .setDescription(result)
                                 .setFooter("Powered by Geo Music");
                         // Embeds must be a list, so create a list with  the embed we just built
                         var embeds = Collections.singletonList(eb.build());
