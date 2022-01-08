@@ -72,7 +72,7 @@ public class GeoMusicSlashCommands extends Plugin {
                     return new CommandsAPI.CommandResult("Hello " + name + "!");
                 }
             }
-        )
+        );
     }
 
     @Override
