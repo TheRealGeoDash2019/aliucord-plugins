@@ -20,28 +20,28 @@ public class GeoMusicSlashCommands extends Plugin {
     // Called when your plugin is started. This is the place to register command, add patches, etc
     public void start(Context context) {
         commands.registerCommand(
-                "cat",
-                "Get a random cat picture",
+                "botUptime",
+                "Get Bot Uptime",
                 Collections.emptyList(),
                 ctx -> {
                     try {
                         // Fetch the api and deserialize the resulting Json string into the ApiResponse class
-                        ApiResponse res = Http.simpleJsonGet("https://aws.random.cat/meow", ApiResponse.class);
+                        ApiResponse res = Http.simpleJsonGet("https://geomusic.tech/api/v2/bot/stats", ApiResponse.class);
 
                         // Build a nice embed
                         var eb = new MessageEmbedBuilder()
                                 .setRandomColor()
-                                .setTitle("Cat!!")
+                                .setTitle("API Response")
                                 // You should specify height and width but we don't have it in this case, so we have to use -1 (the default)
                                 // Thus the image will end up square regardless of its dimensions. In a real plugin you would probably want to
                                 // load the image and get its dimensions
-                                .setImage(res.file)
-                                .setFooter("Powered by https://aws.random.cat/meow");
+                                .setDescription("Bot Uptime: " + res.uptime)
+                                .setFooter("Powered by Geo Music");
                         // Embeds must be a list, so create a list with  the embed we just built
                         var embeds = Collections.singletonList(eb.build());
                         return new CommandsAPI.CommandResult(null, embeds, false);
                     } catch (IOException ex) {
-                        return new CommandsAPI.CommandResult("I'm so sorry... Something went wrong while getting your cat", null, false);
+                        return new CommandsAPI.CommandResult("I'm so sorry... Something went wrong while fetching", null, false);
                     }
                 }
         );
