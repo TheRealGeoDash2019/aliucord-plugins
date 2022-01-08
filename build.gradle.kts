@@ -32,11 +32,12 @@ fun Project.android(configuration: BaseExtension.() -> Unit) = extensions.getByN
 subprojects {
     apply(plugin = "com.android.library")
     apply(plugin = "com.aliucord.gradle")
+    apply(plugin = "kotlin-android")
 
     aliucord {
-        author("DISCORD USERNAME", 123456789L)
-        updateUrl.set("https://raw.githubusercontent.com/USERNAME/REPONAME/builds/updater.json")
-        buildUrl.set("https://raw.githubusercontent.com/USERNAME/REPONAME/builds/%s.zip")
+        author("TheRealGeoDash", 710268763844640839L)
+        updateUrl.set("https://raw.githubusercontent.com/TheRealGeoDash2019/aliucord-plugins/builds/updater.json")
+        buildUrl.set("https://raw.githubusercontent.com/TheRealGeoDash2019/aliucord-plugins/builds/%s.zip")
     }
 
     android {
