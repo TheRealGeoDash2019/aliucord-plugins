@@ -7,6 +7,7 @@ import com.aliucord.annotations.AliucordPlugin;
 import com.aliucord.api.CommandsAPI;
 import com.aliucord.entities.MessageEmbedBuilder;
 import com.aliucord.entities.Plugin;
+import com.aliucord.utils.*
 import com.aliucord.plugins.geomusic.ApiResponse;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class GeoMusicSlashCommands extends Plugin {
     @Override
     // Called when your plugin is started. This is the place to register command, add patches, etc
     public void start(Context context) {
+        /*
         commands.registerCommand(
                 "botUptime",
                 "Get Bot Uptime",
@@ -46,6 +48,31 @@ public class GeoMusicSlashCommands extends Plugin {
                     }
                 }
         );
+        */
+
+        commands.registerCommand("helloWorld", "Say Hello World", ctx -> {
+            return new CommandsAPI.CommandResult("Hello World", null, false);
+        });
+
+        commands.registerCommand(
+            "helloPerson",
+            "Say Hello to a Person",
+            Arrays.asList(
+                Utils.createCommandOption(ApplicationCommandType.STRING, "name", "Person to say hello to"),
+                Utils.createCommandOption(ApplicationCommandType.USER, "user", "User to say hello to")
+            ),
+            ctx -> {
+                // Check if a user argument was passed
+                if (ctx.containsArg("user")) {
+                    var user = ctx.getRequiredUser("user");
+                    return new CommandsAPI.CommandResult("Hello " + user.getUsername() + "!");
+                } else {
+                    // Returns either the argument value if present, or the defaultValue ("World" in this case)
+                    var name = ctx.getStringOrDefault("name", "World");
+                    return new CommandsAPI.CommandResult("Hello " + name + "!");
+                }
+            }
+        )
     }
 
     @Override
