@@ -9,6 +9,7 @@ import com.aliucord.entities.MessageEmbedBuilder;
 import com.aliucord.entities.Plugin;
 import com.aliucord.utils.*;
 import com.aliucord.plugins.geomusic.ApiResponse;
+import com.discord.api.commands.ApplicationCommandType;
 
 import java.io.IOException;
 import java.util.Collections;
