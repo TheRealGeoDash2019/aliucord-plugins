@@ -28,7 +28,7 @@ public class GeoMusicSlashCommands extends Plugin {
                         // Fetch the api and deserialize the resulting Json string into the ApiResponse class
                         ApiResponse res = Http.simpleJsonGet("https://geomusic.tech/api/v2/bot/stats", ApiResponse.class);
                         String uptime = "Bot Uptime: ";
-                        String result = uptime + res
+                        String result = uptime + res;
                         // Build a nice embed
                         var eb = new MessageEmbedBuilder()
                                 .setRandomColor()
