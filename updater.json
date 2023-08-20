@@ -1,0 +1,10 @@
+{
+  "Lyrics": {
+    "version": "1.0.0"
+  },
+  "default": {
+    "version": "1.0.0",
+    "minimumDiscordVersion": 74107,
+    "build": "https://raw.githubusercontent.com/TheRealGeoDash2019/aliucord-plugins/builds/%s.zip"
+  }
+}
