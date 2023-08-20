@@ -127,7 +127,7 @@ public class Lyrics extends Plugin {
                 .setUrl(data.url)
                 .setThumbnail(data.album_art)
                 .setColor(0x209CEE)
-                .setFooter(String.format("%s | Powered by Azuleum", data.artist, "https://external-content.duckduckgo.com/iu/?u=https://azul.one/assets/icon.png")
+                .setFooter(String.format("%s | Powered by Azuleum", data.artist, "https://external-content.duckduckgo.com/iu/?u=https://azul.one/assets/icon.png"))
                 .build();
 
         return new CommandsAPI.CommandResult(null, Collections.singletonList(embed), false, "Lyrics");
