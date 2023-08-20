@@ -1,12 +1,18 @@
+import com.aliucord.gradle.AliucordExtension
 import com.android.build.gradle.BaseExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     repositories {
         google()
         mavenCentral()
+        maven("https://maven.aliucord.com/snapshots")
+        maven("https://jitpack.io")
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.0.0")
+        classpath("com.android.tools.build:gradle:7.1.0")
+        classpath("com.aliucord:gradle:main-SNAPSHOT")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
     }
 }
 
@@ -14,37 +20,62 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven("https://maven.aliucord.com/snapshots")
     }
 }
 
-fun Project.android(configuration: BaseExtension.() -> Unit) = extensions.getByName<BaseExtension>("android").configuration()
+fun Project.aliucord(
+    configuration: AliucordExtension.() -> Unit
+) = extensions.getByName<AliucordExtension>("aliucord").configuration()
+
+fun Project.android(
+    configuration: BaseExtension.() -> Unit
+) = extensions.getByName<BaseExtension>("android").configuration()
 
 subprojects {
-    if (name != "Aliucord" && name != "DiscordStubs") {
-        apply(plugin = "com.android.library")
+    apply(plugin = "com.android.library")
+    apply(plugin = "com.aliucord.gradle")
+    apply(plugin = "kotlin-android")
 
-        android {
-            compileSdkVersion(30)
+    aliucord {
+        val baseGithubUrl = "https://raw.githubusercontent.com/TheRealGeoDash2019/aliucord-plugins"
+        author("TheRealGeoDash", 710268763844640839L)
+        updateUrl.set("$baseGithubUrl/builds/updater.json")
+        buildUrl.set("$baseGithubUrl/builds/%s.zip")
+    }
 
-            defaultConfig {
-                minSdk = 24
-                targetSdk= 30
-                versionCode = 1
-                versionName = "1.0"
-            }
+    android {
+        compileSdkVersion(30)
 
-            compileOptions {
-                sourceCompatibility = JavaVersion.VERSION_11
-                targetCompatibility = JavaVersion.VERSION_11
-            }
+        defaultConfig {
+            minSdk = 24
+            targetSdk= 30
+            versionCode = 1
+            versionName = "1.0"
         }
 
-        dependencies {
-            "implementation"(project(":Aliucord"))
-
-            "implementation"("androidx.appcompat:appcompat:1.3.1")
-            "implementation"("com.google.android.material:material:1.4.0")
+        compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_11
+            targetCompatibility = JavaVersion.VERSION_11
         }
+
+        tasks.withType<KotlinCompile> {
+            kotlinOptions {
+                jvmTarget = "11"
+                freeCompilerArgs = freeCompilerArgs +
+                    "-Xno-call-assertions" +
+                    "-Xno-param-assertions" +
+                    "-Xno-receiver-assertions"
+            }
+        }
+    }
+
+    dependencies {
+        "discord"("com.discord:discord:aliucord-SNAPSHOT")
+        "implementation"("com.aliucord:Aliucord:main-SNAPSHOT")
+
+        "implementation"("androidx.appcompat:appcompat:1.4.0")
+        "implementation"("com.google.android.material:material:1.5.0")
     }
 }
 
